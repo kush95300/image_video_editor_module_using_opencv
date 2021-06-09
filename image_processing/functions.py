@@ -269,5 +269,20 @@ def create_random_image(shape=(720,1080,3)):
     return image
         
     
+def resize_image(image, rows, columns):
+    """
+    Example: 
     
+    resize_image(img,900,1600)      # gives image in 900x1600 dimentions    
+    
+    Inputs Parameters:
+    image = image as numpy array.
+    rows =  number of rows of desired image 
+    columns =  number of columns of desired image 
+    
+   
+    Output:
+    return desired shape image as numpy array.    
+    """
+    return cv2.resize(image,(columns,rows))   
     

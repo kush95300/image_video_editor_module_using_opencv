@@ -4,6 +4,7 @@
 # In[1]:
 
 
+
 from image_processing.functions import *
 
 
@@ -30,22 +31,3 @@ show_image(photo4)
 merged=choice_based_image_merger(img1=pop,img2=photo4,choice=[2,3,4])
 
 show_image(merged)
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
