@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[13]:
+# In[1]:
 
 
 import cv2
@@ -12,7 +12,7 @@ import random
 from tkinter.ttk import *
 
 
-# In[14]:
+# In[2]:
 
 
 def read_image(image_full_path):
@@ -33,7 +33,7 @@ def read_image(image_full_path):
     return cv2.imread(image_full_path)
 
 
-# In[15]:
+# In[3]:
 
 
 def split_color(image):
@@ -63,7 +63,7 @@ def split_color(image):
     
 
 
-# In[16]:
+# In[4]:
 
 
 def show_image(image):
@@ -81,13 +81,12 @@ def show_image(image):
     
     
     """
-   
     cv2.imshow("change_photo",image)
     cv2.waitKey()
     cv2.destroyAllWindows()
 
 
-# In[17]:
+# In[5]:
 
 
 def show_multi_image(images, time=1):
@@ -108,7 +107,7 @@ def show_multi_image(images, time=1):
     
     
     """
-
+    
     if type(images) != list:
         show_image(images)
     else:
@@ -118,7 +117,7 @@ def show_multi_image(images, time=1):
         cv2.destroyAllWindows()
 
 
-# In[18]:
+# In[6]:
 
 
 def image_merger(img1, img2, merge_type="first_max", path=False):
@@ -165,7 +164,7 @@ def image_merger(img1, img2, merge_type="first_max", path=False):
     
 
 
-# In[19]:
+# In[7]:
 
 
 def choice_based_image_merger(img1, img2, choice=[1,2,5], path=False):
@@ -235,7 +234,7 @@ def choice_based_image_merger(img1, img2, choice=[1,2,5], path=False):
     
 
 
-# In[20]:
+# In[8]:
 
 
 def create_random_image(shape=(720,1080,3)):
@@ -267,7 +266,7 @@ def create_random_image(shape=(720,1080,3)):
     
 
 
-# In[21]:
+# In[9]:
 
 
 def randomly_created_image_show(shape=(720,1080,3),number_of_images=150,time=0):
@@ -297,7 +296,7 @@ def randomly_created_image_show(shape=(720,1080,3),number_of_images=150,time=0):
         
 
 
-# In[22]:
+# In[10]:
 
 
 def resize_image(image, rows, columns):
@@ -318,7 +317,7 @@ def resize_image(image, rows, columns):
     return cv2.resize(image,(columns,rows))
 
 
-# In[24]:
+# In[11]:
 
 
 def get_screen_resolution(): 
@@ -336,7 +335,7 @@ def get_screen_resolution():
     return (w,h)
 
 
-# In[43]:
+# In[12]:
 
 
 def get_random_color():
@@ -379,7 +378,7 @@ def random_angle():
     return random.randint(0,360)
 
 
-# In[26]:
+# In[13]:
 
 
 def add_text_to_image(image ,message="your msg",font_type=0,font_size=1,color="green",line_type=4,message_postion=1,thickness=2,move=10):
@@ -448,7 +447,7 @@ def add_text_to_image(image ,message="your msg",font_type=0,font_size=1,color="g
     return cv2.putText(image,message,message_postion, font_type, font_size,color,thickness,line_type)
 
 
-# In[27]:
+# In[14]:
 
 
 #Random Image Creation Functions
@@ -483,7 +482,7 @@ def random_rectangle(img,thickness=random.randint(1,15)):
 def random_rectangle_image(shape=(random.randint(500,1020),random.randint(500,1600),3)):    
     img = np.zeros(shape, np.uint8)
     
-    for i in range(random.randint(1,150)):
+    for i in range(random.randint(1,60)):
         random_rectangle(img)
     return img
 
@@ -504,7 +503,7 @@ def random_circle(img,thickness=random.randint(1,20),radius=random.randint(1,300
 def random_circle_image(shape=(random.randint(500,1020),random.randint(500,1600),3)):    
     img = np.zeros(shape, np.uint8)
     
-    for i in range(random.randint(1,50)):
+    for i in range(random.randint(1,60)):
         random_circle(img)
     return img
 
@@ -527,7 +526,7 @@ def random_ellipse(img,thickness=random.randint(1,15)):
 def random_ellipse_image(shape=(random.randint(500,1020),random.randint(500,1600),3)):    
     img = np.zeros(shape, np.uint8)
      
-    for i in range(random.randint(1,150)):
+    for i in range(random.randint(1,60)):
         random_ellipse(img)
     return img
 
@@ -557,9 +556,16 @@ def random_shape_image(shape=(random.randint(500,1020),random.randint(500,1600),
 
 
 def random_shape_image_show(shape=(random.randint(500,1020),random.randint(500,1600),3),time=1):    
-    while(True):
+    imgs = []
+    for i in range(15):
         img = random_shape_image(shape)
-        cv2.imshow("change_photo",img)
+        imgs.append(img)
+    index = 0
+    while(True):
+        if index == 15:
+            index = 0
+        cv2.imshow("change_photo",imgs[index])
+        index = index  + 1
         if cv2.waitKey(time) == 27:
             break
     cv2.destroyAllWindows()
@@ -582,7 +588,7 @@ def random_shape(img,choose):
 def multi_shape_image(shape=(random.randint(500,1020),random.randint(500,1600),3)):    
     img = np.zeros(shape, np.uint8)
     
-    for i in range(random.randint(1,150)):
+    for i in range(random.randint(1,100)):
         choose = random.randint(0,3)
     
         img=random_shape(img,choose)
@@ -600,7 +606,7 @@ def multi_shape_image_show(shape=(random.randint(500,1020),random.randint(500,16
 
 
 
-# In[28]:
+# In[34]:
 
 
 def selfi_capture(camara_no=0,size_type=1, selfi_folder="selfi", text_move=True, text_moving_speed=10):
@@ -692,15 +698,11 @@ def selfi_capture(camara_no=0,size_type=1, selfi_folder="selfi", text_move=True,
     
 
 
-# In[40]:
+# In[92]:
 
 
 def concat_tile(im_list_2d):
     return cv2.vconcat([cv2.hconcat(im_list_h) for im_list_h in im_list_2d])
-
-def concat_tile(im_list_2d):
-    return cv2.vconcat([cv2.hconcat(im_list_h) for im_list_h in im_list_2d])
-
 
 def collage_maker(imgs, path=False,size=0.5):
     images=[]
@@ -712,20 +714,78 @@ def collage_maker(imgs, path=False,size=0.5):
         images = imgs
     print(len(images))
     
-    if len(images) == None:
+    if len(images)== 0 or images == None:
         return "No Image Specified"
-    elif len(images) == 2:
-        img=[]
+    elif len(images) == 1:
+        image = "NO image"
         for i in images:
-            i = cv2.resize(i, dsize=(0, 0), fx=size, fy=size)
-            img.append(i)
-            print(i.shape)
-        print(img[0].shape)
-        collage = concat_tile([[img[0],img[1]]])
+            
+            i = resize_image(image=i,columns=1100,rows=800)
+            image = i
+        return image
+    elif len(images) == 2:
+        image = []
+        for i in images:
+            i = resize_image(image=i,columns=700,rows=600)
+            image.append(i)
+        collage = concat_tile([[image[0],image[1]]])
         return collage
-        
+    elif len(images) == 3:
+        image = []
+        for i in images:
+            i = resize_image(image=i,columns=500,rows=500)
+            image.append(i)
+        collage = concat_tile([[image[0],image[1],image[2]]])
+        return collage
+    elif len(images) == 4:
+        image = []
+        for i in images:
+            i = resize_image(image=i,columns=600,rows=400)
+            image.append(i)
+        collage = concat_tile([[image[0],image[1]],[image[2],image[3]]])
+        return collage
+    elif len(images) == 5:
+        image = []
+        for i in images:
+            i = resize_image(image=i,columns=500,rows=400)
+            image.append(i)
+        demo = create_random_image(shape=image[1].shape)
+        collage = concat_tile([[image[0],image[1],image[4]],[image[2],image[3],demo]])
+        return collage
+    elif len(images) == 6:
+        image = []
+        for i in images:
+            i = resize_image(image=i,columns=500,rows=400)
+            image.append(i)
+        collage = concat_tile([[image[0],image[1],image[4]],[image[2],image[3],image[5]]])
+        return collage
+    elif len(images) == 7:
+        image = []
+        for i in images:
+            i = resize_image(image=i,columns=500,rows=300)
+            image.append(i)
+        demo = create_random_image(shape=image[1].shape)
        
+        collage = concat_tile([[image[0],image[1],image[2]],[demo,image[3],demo],[image[4],image[5],image[6]]])
+        return collage
+    elif len(images) == 8:
+        image = []
+        for i in images:
+            i = resize_image(image=i,columns=500,rows=300)
+            image.append(i)
+        demo = create_random_image(shape=image[1].shape)
+       
+        collage = concat_tile([[image[0],image[1],image[2]],[image[3],image[4],image[5]],[image[6],demo,image[7]]])
+        return collage
+    elif len(images) == 9:
+        image = []
+        for i in images:
+            i = resize_image(image=i,columns=500,rows=300)
+            image.append(i)
+        collage = concat_tile([[image[0],image[1],image[2]],[image[3],image[4],image[5]],[image[6],image[7],image[8]]])
+        return collage
    
     else:
-        return "you can make collage of 4 images only."
+        return "you can make collage of 9 images only."
         return image
+
